@@ -43,18 +43,20 @@ PeopleApp.App.Router = Backbone.Router.extend({
     */ 
     initializeGlobalElements: function (e) {
        
-        /*if (MyUtilization.App.People === undefined) {
-            MyUtilization.App.People = new MyUtilization.App.peopleView();
-            MyUtilization.App.People.render();
-        }*/
+        if (PeopleApp.App.People === undefined) {
+            PeopleApp.App.People = new PeopleApp.App.peopleView ();
+            PeopleApp.App.People.render();
+        }
     },
     /**
      * Route Handler for the Landing Page
      */
     showLanding: function () {
         // Remove all loading indicators
-        var peopleView = new PeopleApp.App.peopleView();
-        peopleView.render();
+        if (PeopleApp.App.People === undefined) {
+            PeopleApp.App.People = new PeopleApp.App.peopleView ();
+            PeopleApp.App.People.render();
+        }
     },
     /**
      * Route Handler for the default route

@@ -17,6 +17,7 @@ PeopleApp.App.peopleView = Backbone.View.extend({
 
     initialize: function () {
         this.template = _.template($('#main-tpl').html());
+        console.log(this.$el);
     },
 
     render: function () {
