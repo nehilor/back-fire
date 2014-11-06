@@ -73,20 +73,25 @@
 		</form>
 	</script>
 	<script type="text/template" id="list-tpl">
+		<% var peoplelist = obj.peoplelist; %>
 		<table class="table table-striped">
 	      <thead>
 	        <tr>
-	          <th>Name</th>
-	          <th>Age</th>
-	          <th>Sex</th>
+        		<th>ID</th>
+          		<th>Name</th>
+          		<th>Age</th>
+          		<th>Sex</th>
 	        </tr>
 	      </thead>
 	      <tbody>
-	        <tr>
-	          <td></td>
-	          <td></td>
-	          <td></td>
-	        </tr>
+	        <% for (var i = 0; i < peoplelist.length; i++) { %>
+		        <tr>
+		          <td><%= peoplelist[i].id %></td>
+		          <td><%= peoplelist[i].name %></td>
+		          <td><%= peoplelist[i].age %></td>
+		          <td><%= peoplelist[i].sex %></td>
+		        </tr>	                
+	        <%}%>
 	      </tbody>
 	    </table>
 	</script>

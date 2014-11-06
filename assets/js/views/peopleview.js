@@ -16,15 +16,26 @@ PeopleApp.App.PeopleFormView = Backbone.View.extend({
     },
 
     initialize: function () {
+    	var self = this;
         this.template = _.template($('#form-tpl').html());
 		PeopleApp.App.myDataRef.on('child_added', function(snapshot) {
-			var newPost = snapshot.val();
-			//PeopleApp.App.peopleList.render();
+			self.displayPeople();
 		});
     },
 
     render: function () {
         this.$el.html(this.template());
+    },
+
+    displayPeople: function(){
+	    $.when(
+	        PeopleApp.App.peopleCollection.fetch({
+	            success: function(peopleList) {
+	                PeopleApp.App.peopleCollection = peopleList;
+	            }})
+	        ).then(function() {
+	            PeopleApp.App.peopleList.render();
+	        });
     },
 
     save: function(){
@@ -36,5 +47,6 @@ PeopleApp.App.PeopleFormView = Backbone.View.extend({
     		'sex': $('#sex').val()
     	};
     	PeopleApp.App.myDataRef.push(person);
+    	$('.form-horizontal')[0].reset();
     }
 });

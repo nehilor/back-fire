@@ -20,6 +20,10 @@ PeopleApp.App.PeopleListView = Backbone.View.extend({
     },
 
     render: function () {
-        this.$el.html(this.template());
+        var template = this.template({
+            'peoplelist': this.collection.toJSON()
+        });
+        this.$el.html(template);
+        return this;
     }
 });

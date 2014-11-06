@@ -47,15 +47,14 @@ PeopleApp.App.Router = Backbone.Router.extend({
             PeopleApp.App.PeopleForm = new PeopleApp.App.PeopleFormView();
             PeopleApp.App.PeopleForm.render();
         }
-        var people = new PeopleApp.App.PeopleCollection();
-        var myCollection = new Backbone.Collection;
+        PeopleApp.App.peopleCollection = new PeopleApp.App.PeopleCollection();
         $.when(
-            people.fetch({
+            PeopleApp.App.peopleCollection.fetch({
                 success: function(peopleList) {
-                    myCollection.reset(peopleList);
+                    PeopleApp.App.peopleCollection = peopleList;
                 }})
             ).then(function() {
-                PeopleApp.App.peopleList = new PeopleApp.App.PeopleListView({collection: myCollection});
+                PeopleApp.App.peopleList = new PeopleApp.App.PeopleListView({collection: PeopleApp.App.peopleCollection});
                 PeopleApp.App.peopleList.render();
             });
     },
