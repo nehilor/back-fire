@@ -10,7 +10,12 @@
 PeopleApp.App.PeopleCollection = Backbone.Collection.extend({
     model: PeopleApp.App.PersonModel,
     parse: function (response) {
-        return response;
+        var collection = [];
+        
+        for(var person in response){
+            collection.push(response[person]);
+        }
+        return collection;
     },
     url: function () {
         return 'https://glowing-inferno-6048.firebaseio.com/people.json';
