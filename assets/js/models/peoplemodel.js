@@ -12,7 +12,7 @@ PeopleApp.App.PersonModel = Backbone.Model.extend({
         'id': 0,
         'name': '',
         'age': '',
-        'genre': ''
+        'sex': ''
     },
 
     parse: function (response) {

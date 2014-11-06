@@ -43,19 +43,30 @@ PeopleApp.App.Router = Backbone.Router.extend({
     */ 
     initializeGlobalElements: function (e) {
        
-        if (PeopleApp.App.People === undefined) {
-            PeopleApp.App.People = new PeopleApp.App.peopleView ();
-            PeopleApp.App.People.render();
+        if (PeopleApp.App.PeopleForm === undefined) {
+            PeopleApp.App.PeopleForm = new PeopleApp.App.PeopleFormView();
+            PeopleApp.App.PeopleForm.render();
         }
+        var people = new PeopleApp.App.PeopleCollection();
+        var myCollection = new Backbone.Collection;
+        $.when(
+            people.fetch({
+                success: function(peopleList) {
+                    myCollection.reset(peopleList);
+                }})
+            ).then(function() {
+                PeopleApp.App.peopleList = new PeopleApp.App.PeopleListView({collection: myCollection});
+                PeopleApp.App.peopleList.render();
+            });
     },
     /**
      * Route Handler for the Landing Page
      */
     showLanding: function () {
         // Remove all loading indicators
-        if (PeopleApp.App.People === undefined) {
-            PeopleApp.App.People = new PeopleApp.App.peopleView ();
-            PeopleApp.App.People.render();
+        if (PeopleApp.App.PeopleForm === undefined) {
+            PeopleApp.App.PeopleForm = new PeopleApp.App.PeopleFormView();
+            PeopleApp.App.PeopleForm.render();
         }
     },
     /**

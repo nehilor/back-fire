@@ -7,20 +7,34 @@
  * @dependencies jQuery, BackBoneJS, Firebase
  * Copyright(c) 2014 
  */
-PeopleApp.App.peopleView = Backbone.View.extend({
+PeopleApp.App.PeopleFormView = Backbone.View.extend({
 
-    el: '#main-container',
+    el: '#main-form',
 
     events: {
-
+    	'click button.add' : 'save'
     },
 
     initialize: function () {
-        this.template = _.template($('#main-tpl').html());
-        console.log(this.$el);
+        this.template = _.template($('#form-tpl').html());
+		PeopleApp.App.myDataRef.on('child_added', function(snapshot) {
+			var newPost = snapshot.val();
+			//PeopleApp.App.peopleList.render();
+		});
     },
 
     render: function () {
         this.$el.html(this.template());
+    },
+
+    save: function(){
+    	var peopleRef = PeopleApp.App.myDataRef.child("person");
+    	var person = {
+    		'id': $('#id').val(),
+    		'name': $('#name').val(),
+    		'age': $('#age').val(),
+    		'sex': $('#sex').val()
+    	};
+    	PeopleApp.App.myDataRef.push(person);
     }
 });

@@ -11,7 +11,7 @@ var PeopleApp = PeopleApp || {}; //If the object doesnt existes then instantiate
 
 PeopleApp.App = PeopleApp.App || {}; //If the object doesnt existes then instantiate it
 
-PeopleApp.App.myDataRef = new Firebase('https://glowing-inferno-6048.firebaseio.com/');
+PeopleApp.App.myDataRef = new Firebase('https://glowing-inferno-6048.firebaseio.com/people');
 
 PeopleApp.App.pushState = true;
 

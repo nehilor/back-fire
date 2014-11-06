@@ -21,15 +21,17 @@
 	<script type="text/javascript" src="assets/js/collections/peoplecollection.js"></script>
 	<!-- View -->
 	<script type="text/javascript" src="assets/js/views/peopleview.js"></script>
+	<script type="text/javascript" src="assets/js/views/peoplelistview.js"></script>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
 </head>
 <body>
 	<div id="main-container" class="container">
-
+		<div id="main-form"></div>
+		<div id="people-list"></div>
 	</div>
 	<!-- Main Template-->
-	<script type="text/template" id="main-tpl">
+	<script type="text/template" id="form-tpl">
 		<div class="page-header">
 	    	<h1>BackBoneJS + FireBase</h1>
 	    	<p class="lead">People list.</p>
@@ -65,10 +67,12 @@
 		  <div class="form-group">
 		    <div class="col-sm-offset-2 col-sm-10">
 	    		<button type="reset" class="btn btn-default">Clear</button>
-	      	<button type="button" class="btn btn-info" >Add</button>
+	      	<button type="button" class="btn btn-info add" >Add</button>
 		    </div>
 		  </div>
 		</form>
+	</script>
+	<script type="text/template" id="list-tpl">
 		<table class="table table-striped">
 	      <thead>
 	        <tr>

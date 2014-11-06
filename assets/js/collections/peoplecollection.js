@@ -13,6 +13,6 @@ PeopleApp.App.PeopleCollection = Backbone.Collection.extend({
         return response;
     },
     url: function () {
-        return MyUtilization.App.root + '/api/People';
+        return 'https://glowing-inferno-6048.firebaseio.com/people.json';
     }
 });
