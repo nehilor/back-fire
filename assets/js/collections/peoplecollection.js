@@ -11,9 +11,11 @@ PeopleApp.App.PeopleCollection = Backbone.Collection.extend({
     model: PeopleApp.App.PersonModel,
     parse: function (response) {
         var collection = [];
-        
+        var newObject = {};
         for(var person in response){
-            collection.push(response[person]);
+            newObject = response[person];
+            newObject['key'] = person;
+            collection.push(newObject);
         }
         return collection;
     },
