@@ -9,6 +9,8 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 	<!-- Latest compiled BackBone minified -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+	<!-- Latest compiled Bootstrap minified -->
+	<script type="text/javascript" src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 	<!-- Firebase reference -->
 	<script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>
 	<!-- My Custom App -->
@@ -84,7 +86,7 @@
           		<th>Name</th>
           		<th>Age</th>
           		<th>Sex</th>
-          		<th></th>
+          		<th><span class="glyphicon glyphicon-trash"></span></th>
 	        </tr>
 	      </thead>
 	      <tbody>
@@ -94,8 +96,8 @@
 		          <td><%= peoplelist[i].name %></td>
 		          <td><%= peoplelist[i].age %></td>
 		          <td><%= peoplelist[i].sex %></td>
-		          <td><a href="#" class="remove-item" title="Remove" data-key="<%= peoplelist[i].key %>">X</a>
-		        </tr>	                
+		          <td><a href="#" data-toggle="tooltip" title="Remove" class="remove-item" data-key="<%= peoplelist[i].key %>">X</a>
+		        </tr>	                 
 	        <%}%>
 	      </tbody>
 	    </table>
