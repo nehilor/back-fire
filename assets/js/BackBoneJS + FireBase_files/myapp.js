@@ -31,7 +31,7 @@ PeopleApp.App.MyApp = function () {
         var startingUrl = PeopleApp.App.root;
         //Initializes the router
         PeopleApp.App.router = new PeopleApp.App.Router();
-        Backbone.history.start({ 'pushState': PeopleApp.App.pushState, 'root': startingUrl });
+        Backbone.history.start({ pushState: PeopleApp.App.pushState, root: startingUrl });
     };
 
 };

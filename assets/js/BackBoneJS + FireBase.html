@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)http://localhost:8080/back-fire/index.html#/list -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>BackBoneJS + FireBase</title>
+	<!-- Latest compiled jQuery minified -->
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/jquery-2.1.1.min.js"></script>
+	<!-- Latest compiled UnderScore minified -->
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/underscore-min.js"></script>
+	<!-- Latest compiled BackBone minified -->
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/backbone-min.js"></script>
+	<!-- Firebase reference -->
+	<script src="./BackBoneJS + FireBase_files/firebase.js"></script>
+	<!-- My Custom App -->
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/myapp.js"></script>
+	<!-- My Router -->
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/router.js"></script>
+	<!-- Model -->
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/peoplemodel.js"></script>
+	<!-- Collection -->
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/peoplecollection.js"></script>
+	<!-- View -->
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/peopleview.js"></script>
+	<script type="text/javascript" src="./BackBoneJS + FireBase_files/peoplelistview.js"></script>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" type="text/css" href="./BackBoneJS + FireBase_files/bootstrap.min.css">
+</head>
+<body>
+	<div id="main-container" class="container">
+		<nav class="navbar navbar-default" role="navigation">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="http://localhost:8080/back-fire/index.html#">Brand</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a href="http://localhost:8080/back-fire/index.html#/index">Home</a></li>
+		        <li><a href="./BackBoneJS + FireBase_files/BackBoneJS + FireBase.html">List</a></li>
+		      </ul>
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+		<div id="main-form">
+		<div class="page-header">
+	    	<h1>BackBoneJS + FireBase</h1>
+	    	<p class="lead">People list.</p>
+	  	</div>
+		<form class="form-horizontal" role="form">
+		  <div class="form-group">
+		    <label for="id" class="col-sm-2 control-label">ID</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="id" placeholder="ID">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="name" class="col-sm-2 control-label">Name</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="name" placeholder="Name">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="age" class="col-sm-2 control-label">Age</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="age" placeholder="Age">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="sex" class="col-sm-2 control-label">Sex</label>
+		    <div class="col-sm-10">
+	          <select class="form-control" id="sex" name="sex">
+	            <option value="Male">Male</option>
+	            <option value="Female">Female</option>
+	          </select>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+	    		<button type="reset" class="btn btn-default">Clear</button>
+	      	<button type="button" class="btn btn-info add">Add</button>
+		    </div>
+		  </div>
+		</form>
+		<div class="alert alert-success" style="display: none;" role="alert">
+	      <strong>Well done!</strong> People list updated!
+	    </div>
+	</div>
+	</div>
+	<!-- Main Template-->
+	<script type="text/template" id="form-tpl">
+		<div class="page-header">
+	    	<h1>BackBoneJS + FireBase</h1>
+	    	<p class="lead">People list.</p>
+	  	</div>
+		<form class="form-horizontal" role="form">
+		  <div class="form-group">
+		    <label for="id" class="col-sm-2 control-label">ID</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="id" placeholder="ID">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="name" class="col-sm-2 control-label">Name</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="name" placeholder="Name">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="age" class="col-sm-2 control-label">Age</label>
+		    <div class="col-sm-10">
+		      <input type="text" class="form-control" id="age" placeholder="Age">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="sex" class="col-sm-2 control-label">Sex</label>
+		    <div class="col-sm-10">
+	          <select class="form-control" id="sex" name="sex">
+	            <option value="Male">Male</option>
+	            <option value="Female">Female</option>
+	          </select>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10">
+	    		<button type="reset" class="btn btn-default">Clear</button>
+	      	<button type="button" class="btn btn-info add" >Add</button>
+		    </div>
+		  </div>
+		</form>
+		<div class="alert alert-success" style="display: none;" role="alert">
+	      <strong>Well done!</strong> People list updated!
+	    </div>
+	</script>
+	<script type="text/template" id="list-tpl">
+		<% var peoplelist = obj.peoplelist; %>
+		<table class="table table-striped">
+	      <thead>
+	        <tr>
+        		<th>ID</th>
+          		<th>Name</th>
+          		<th>Age</th>
+          		<th>Sex</th>
+          		<th></th>
+	        </tr>
+	      </thead>
+	      <tbody>
+	        <% for (var i = 0; i < peoplelist.length; i++) { %>
+		        <tr>
+		          <td><%= peoplelist[i].id %></td>
+		          <td><%= peoplelist[i].name %></td>
+		          <td><%= peoplelist[i].age %></td>
+		          <td><%= peoplelist[i].sex %></td>
+		          <td><a href="#" class="remove-item" title="Remove" data-key="<%= peoplelist[i].key %>">X</a>
+		        </tr>	                
+	        <%}%>
+	      </tbody>
+	    </table>
+	</script>
+
+</body></html>

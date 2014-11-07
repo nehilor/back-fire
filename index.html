@@ -9,6 +9,8 @@
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.5.2/underscore-min.js"></script>
 	<!-- Latest compiled BackBone minified -->
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+	<!-- Latest compiled Bootstrap minified -->
+	<script type="text/javascript" src="https://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
 	<!-- Firebase reference -->
 	<script src='https://cdn.firebase.com/js/client/1.1.1/firebase.js'></script>
 	<!-- My Custom App -->
@@ -71,22 +73,32 @@
 		    </div>
 		  </div>
 		</form>
+		<div class="alert alert-success" style="display: none;" role="alert">
+	      <strong>Well done!</strong> People list updated!
+	    </div>
 	</script>
 	<script type="text/template" id="list-tpl">
+		<% var peoplelist = obj.peoplelist; %>
 		<table class="table table-striped">
 	      <thead>
 	        <tr>
-	          <th>Name</th>
-	          <th>Age</th>
-	          <th>Sex</th>
+        		<th>ID</th>
+          		<th>Name</th>
+          		<th>Age</th>
+          		<th>Sex</th>
+          		<th><span class="glyphicon glyphicon-trash"></span></th>
 	        </tr>
 	      </thead>
 	      <tbody>
-	        <tr>
-	          <td></td>
-	          <td></td>
-	          <td></td>
-	        </tr>
+	        <% for (var i = 0; i < peoplelist.length; i++) { %>
+		        <tr>
+		          <td><%= peoplelist[i].id %></td>
+		          <td><%= peoplelist[i].name %></td>
+		          <td><%= peoplelist[i].age %></td>
+		          <td><%= peoplelist[i].sex %></td>
+		          <td><a href="#" data-toggle="tooltip" title="Remove" class="remove-item" data-key="<%= peoplelist[i].key %>">X</a>
+		        </tr>	                 
+	        <%}%>
 	      </tbody>
 	    </table>
 	</script>

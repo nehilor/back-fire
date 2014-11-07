@@ -26,8 +26,6 @@ PeopleApp.App.PeopleListView = Backbone.View.extend({
         });
         //Rendering the template
         this.$el.html(template);
-
-        $("[data-toggle='tooltip']").tooltip();
         //Return the self element
         return this;
     },
