@@ -13,14 +13,20 @@ PeopleApp.App.Router = Backbone.Router.extend({
 
     routes: {
         '': 'defaultRoute',
-        'index.html': 'showLanding'
+        'index': 'showLanding',
+        'list': 'showList',
+        'test/:id': 'test'
     },
 
     /**
      * Initializer function
      */
     initialize: function () {
-        this.initializeGlobalElements();
+        if(!PeopleApp.App.pushState){
+            $.proxy(this.ieSupport, this)();
+        }else{
+            this.initializeGlobalElements();
+        }
     },
 
     /**
@@ -33,7 +39,7 @@ PeopleApp.App.Router = Backbone.Router.extend({
             page = (Backbone.history.location.pathname).split('/').pop();
             fn = this.routes[page];
         }
-        //this.initializeGlobalElements();
+        this.initializeGlobalElements();
         (!!fn) && this[fn].call(this);
     },
 
@@ -43,11 +49,28 @@ PeopleApp.App.Router = Backbone.Router.extend({
     */ 
     initializeGlobalElements: function (e) {
        
+        if (PeopleApp.App.peopleList === undefined) {
+            PeopleApp.App.peopleList = new PeopleApp.App.PeopleFormView();
+        }
+
+        if (PeopleApp.App.peopleCollection === undefined) {
+            PeopleApp.App.peopleCollection = new PeopleApp.App.PeopleCollection();
+        }
+
+    },
+    /**
+     * Route Handler for the Landing Page
+     */
+    showLanding: function () {
         if (PeopleApp.App.PeopleForm === undefined) {
             PeopleApp.App.PeopleForm = new PeopleApp.App.PeopleFormView();
             PeopleApp.App.PeopleForm.render();
         }
-        PeopleApp.App.peopleCollection = new PeopleApp.App.PeopleCollection();
+    },
+    /**
+     * Route Handler for the Landing Page
+     */
+    showList: function () {
         $.when(
             PeopleApp.App.peopleCollection.fetch({
                 success: function(peopleList) {
@@ -58,15 +81,9 @@ PeopleApp.App.Router = Backbone.Router.extend({
                 PeopleApp.App.peopleList.render();
             });
     },
-    /**
-     * Route Handler for the Landing Page
-     */
-    showLanding: function () {
-        // Remove all loading indicators
-        if (PeopleApp.App.PeopleForm === undefined) {
-            PeopleApp.App.PeopleForm = new PeopleApp.App.PeopleFormView();
-            PeopleApp.App.PeopleForm.render();
-        }
+
+    test: function(id){
+        console.log(id);
     },
     /**
      * Route Handler for the default route
@@ -74,7 +91,11 @@ PeopleApp.App.Router = Backbone.Router.extend({
     defaultRoute: function () {
         var fragment = Backbone.history.fragment || (Backbone.history.location.pathname).split('/').pop();
         switch (fragment) {
+            case "list":
+                this.showList();
+                break;
             default:
+                console.log(fragment);
                 this.showLanding();
         }
     }
