@@ -21,6 +21,10 @@ PeopleApp.App.PeopleFormView = Backbone.View.extend({
 		PeopleApp.App.myDataRef.on('child_added', function(snapshot) {
 			self.displayPeople();
 		});
+        PeopleApp.App.myDataRef.on('child_removed', function(oldChildSnapshot) {
+            self.displayPeople();
+        });
+        this.on('child_added', this.displayMessage, this);
     },
 
     render: function () {
@@ -38,6 +42,12 @@ PeopleApp.App.PeopleFormView = Backbone.View.extend({
 	        });
     },
 
+    displayMessage: function(){
+        $('div.alert').fadeIn(500, function(){
+            $(this).fadeOut(5000);
+        });
+    },
+
     save: function(){
     	var peopleRef = PeopleApp.App.myDataRef.child("person");
     	var person = {
@@ -48,5 +58,6 @@ PeopleApp.App.PeopleFormView = Backbone.View.extend({
     	};
     	PeopleApp.App.myDataRef.push(person);
     	$('.form-horizontal')[0].reset();
+        this.trigger('child_added');
     }
 });

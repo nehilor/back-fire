@@ -33,7 +33,7 @@ PeopleApp.App.Router = Backbone.Router.extend({
             page = (Backbone.history.location.pathname).split('/').pop();
             fn = this.routes[page];
         }
-        //this.initializeGlobalElements();
+        this.initializeGlobalElements();
         (!!fn) && this[fn].call(this);
     },
 
@@ -62,7 +62,6 @@ PeopleApp.App.Router = Backbone.Router.extend({
      * Route Handler for the Landing Page
      */
     showLanding: function () {
-        // Remove all loading indicators
         if (PeopleApp.App.PeopleForm === undefined) {
             PeopleApp.App.PeopleForm = new PeopleApp.App.PeopleFormView();
             PeopleApp.App.PeopleForm.render();
