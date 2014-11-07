@@ -19,7 +19,5 @@ PeopleApp.App.PeopleCollection = Backbone.Collection.extend({
         }
         return collection;
     },
-    url: function () {
-        return 'https://glowing-inferno-6048.firebaseio.com/people.json';
-    }
+    url: 'https://glowing-inferno-6048.firebaseio.com/people.json'
 });
